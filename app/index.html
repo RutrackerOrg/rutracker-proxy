@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>RuTracker proxy</title>
+
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="./node_modules/angular-material/angular-material.css">
+    <link rel="stylesheet" type="text/css" href="styles/app.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:500.700&amp;subset=cyrillic-ext" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./node_modules/font-awesome/css/font-awesome.css">
+
+    <script type="text/javascript" src="./node_modules/angular/angular.js"></script>
+    <script type="text/javascript" src="./node_modules/angular-aria/angular-aria.js"></script>
+    <script type="text/javascript" src="./node_modules/angular-animate/angular-animate.js"></script>
+    <script type="text/javascript" src="./node_modules/angular-material/angular-material.js"></script>
+
+    <script type="text/javascript" src="scripts/index.js"></script>
+    <script type="text/javascript" src="scripts/app/appController.js"></script>
+    <script type="text/javascript" src="scripts/app/config.js"></script>
+</head>
+<body>
+
+<md-content ng-controller="AppController" class="content-container">
+    <div layout="column" class="panel-main" layout-align="center center">
+        <div class="local-proxy" layout="column" layout-align="center center">
+            <h1>ВАШ ПРОКСИ СЕРВЕР</h1>
+            <div class="fields" layout="row" layout-align="space-between center">
+                <div class="field-ip" layout="row" layout-align="space-between center">
+                    <div class="field-label">IP</div>
+                    <div class="field-data" select-on-click>127.0.0.1</div>
+                </div>
+                <div class="field-port" layout="row" layout-align="space-between center">
+                    <div class="field-label">PORT</div>
+                    <div class="field-data" select-on-click>8080</div>
+                </div>
+            </div>
+        </div>
+        <div class="proxy-status" layout="row" layout-align="space-between center">
+            <div class="status-label">СТАТУС:</div>
+            <div class="status-data status-loading" ng-show="loading && proxy_ip">ОБНОВЛЯЕТСЯ</div>
+            <div class="status-data status-working" ng-show="!loading && proxy_ip">РАБОТАЕТ</div>
+            <div class="status-data status-not-working" ng-show="!proxy_ip">НЕРАБОТАЕТ</div>
+        </div>
+    </div>
+    <div layout="row" class="panel-bottom" layout-align="space-between center">
+        <md-switch ng-model="socks" aria-label="SocksV5" title="Переключить на SocksV5 прокси">
+            Socks
+        </md-switch>
+        <div>
+            <i class="fa fa-question-circle" aria-hidden="true" ng-click="openHelpUrl()" title="Открыть справку"></i>
+            <i class="fa fa-refresh" aria-hidden="true" ng-click="changeProxy()" title="Сменить прокси"></i>
+        </div>
+    </div>
+</md-content>
+
+</body>
+</html>

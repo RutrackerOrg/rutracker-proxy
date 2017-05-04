@@ -1,0 +1,105 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.content-container {
+    height: 100%;
+    background-color: #00BBD3;
+}
+
+.panel-main {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 157px;
+
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: default;
+}
+
+.panel-main > div {
+    width: 255px;
+}
+
+.local-proxy h1 {
+    font-size: 24px;
+    color: rgba(0,0,0, 0.54);
+    margin: 0;
+}
+
+.local-proxy .fields {
+    width: 100%;
+}
+
+.local-proxy .fields > div {
+    padding: 3px 5px;
+    border-bottom: 2px solid #80CBC4;
+}
+
+.local-proxy .field-label {
+    margin-right: 10px;
+    font-size: 20px;
+    color: rgba(255,255,255, 0.7);
+}
+
+.local-proxy .field-data {
+    font-size: 18px;
+    color: #FFFFFF;
+
+    -webkit-user-select: auto;
+    user-select: initial;
+    cursor: text;
+}
+
+.proxy-status {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.status-label {
+    font-size: 24px;
+    font-weight: 700;
+    color: rgba(0,0,0, 0.54);
+}
+
+.status-data {
+    font-size: 20px;
+}
+
+.status-data.status-working {
+    color: #FFFFFF;
+}
+
+.status-data.status-not-working {
+    color: #E64040;
+}
+
+.status-data.status-loading {
+    color: #F8E81C;
+}
+
+.panel-bottom {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    height: 65px;
+    background-color: #FAFAFA;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.panel-bottom .fa {
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 22px;
+    color: rgba(0,0,0, 0.5);
+}
+
