@@ -1,0 +1,11 @@
+#directories
+bower_components
+node_modules
+dist
+.vscode
+release
+
+#files
+*.tgz
+*.log
+.idea
