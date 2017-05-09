@@ -1,0 +1,80 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.content-container {
+    height: 100%;
+    background-color: #ECEFF1;
+}
+
+.panel-main {
+    height: 100%;
+}
+
+.panel-main h1 {
+    font-weight: normal;
+    font-size: 36px;
+    color: #00BBD3;
+    margin: 0;
+}
+
+.panel-main h3 {
+    font-weight: normal;
+    font-size: 24px;
+    color: rgba(38, 50, 56, .87);
+    margin: 0;
+    padding: 16px 15px 18px 15px;
+    border-bottom: 1px solid #212121;
+}
+
+.panel-main .clients {
+    margin-top: 15px;
+}
+
+.panel-main .clients > div {
+    -webkit-filter: grayscale(100%) !important;
+    filter: grayscale(100%) !important;
+    cursor: pointer;
+    margin: 0 5px 0 5px;
+}
+
+.panel-main .clients > div:hover {
+    -webkit-filter: none !important;
+    filter: none !important;
+}
+
+.return-main {
+    position: absolute;
+    right: 10px;
+    top: 0;
+    color: rgba(0,0,0, .31);
+    font-weight: bold;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.panel-help {
+    padding: 10px;
+}
+
+.panel-help h2 {
+    color: #E54141;
+    font-size: 36px;
+    font-weight: 400;
+    margin: 10px auto 20px auto;
+}
+
+.panel-help p {
+    color: #595959;
+    font-size: 16px;
+    margin: 0 0 10px;
+}
+
+.panel-help img {
+    margin-bottom: 25px;
+}

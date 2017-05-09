@@ -21,10 +21,13 @@
 </head>
 <body>
 
-<md-content ng-controller="AppController" class="content-container">
+<md-content ng-controller="AppController" md-theme="docs-dark" class="content-container">
     <div layout="column" class="panel-main" layout-align="center center">
         <div class="local-proxy" layout="column" layout-align="center center">
-            <h1>ВАШ ПРОКСИ СЕРВЕР</h1>
+            <h1>
+                ВАШ ПРОКСИ СЕРВЕР
+                <i class="fa fa-question-circle" aria-hidden="true" ng-click="openHelpUrl()" title="Открыть справку"></i>
+            </h1>
             <div class="fields" layout="row" layout-align="space-between center">
                 <div class="field-ip" layout="row" layout-align="space-between center">
                     <div class="field-label">IP</div>
@@ -44,7 +47,7 @@
         </div>
     </div>
     <div layout="row" class="panel-bottom" layout-align="space-between center">
-        <md-switch ng-model="socks" aria-label="SocksV5" title="Переключить на SocksV5 прокси">
+        <md-switch class="md-primary" ng-model="socks" aria-label="SocksV5" title="Переключить на SocksV5 прокси">
             Socks
         </md-switch>
         <div>

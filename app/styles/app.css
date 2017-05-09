@@ -9,7 +9,7 @@ body {
 
 .content-container {
     height: 100%;
-    background-color: #00BBD3;
+    background-color: #00BBD3 !important;
 }
 
 .panel-main {
@@ -25,13 +25,21 @@ body {
 }
 
 .panel-main > div {
-    width: 255px;
+    width: 280px;
 }
 
 .local-proxy h1 {
     font-size: 24px;
     color: rgba(0,0,0, 0.54);
     margin: 0;
+}
+
+.local-proxy h1 .fa-question-circle {
+    cursor: pointer;
+}
+
+.local-proxy h1 .fa-question-circle:hover {
+    color: #FFFFFF;
 }
 
 .local-proxy .fields {

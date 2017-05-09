@@ -25,6 +25,7 @@ if (os.platform() === 'win32') {
 }
 
 let mainWindow = null;
+let helpWindow = null;
 
 app.on('window-all-closed', function () {
   app.quit();
@@ -43,7 +44,8 @@ app.on('ready', function () {
     resizable: false,
     fullscreenable: false,
     center: true,
-    icon: appIcon
+    icon: appIcon,
+    show: false,
   });
 
   mainWindow.loadURL('file://' + __dirname + "/index.html");
@@ -53,6 +55,12 @@ app.on('ready', function () {
 
   mainWindow.on('closed', function () {
     mainWindow = null;
+    helpWindow = null;
+    app.quit();
+  });
+
+  mainWindow.on('ready-to-show', () => {
+    mainWindow.show();
   });
 
   //noinspection JSUnresolvedFunction
@@ -80,6 +88,50 @@ app.on('ready', function () {
     };
 
     ipcMain.on('proxy-update-request', updateProxy);
+
+    ipcMain.on('open-help', () => {
+      if (!helpWindow) {
+        helpWindow = new BrowserWindow({
+          name: "rto-proxy",
+          width: 800,
+          height: 600,
+          toolbar: false,
+          // закоментить для dev
+          resizable: false,
+          fullscreenable: false,
+          center: true,
+          icon: appIcon,
+          show: false
+        });
+        helpWindow.loadURL('file://' + __dirname + '/help.html');
+
+        // debug only
+        // helpWindow.webContents.openDevTools({detach:true});
+
+        mainWindow.on('close', () => {
+          helpWindow.close();
+        });
+
+        helpWindow.on('ready-to-show', () => {
+          helpWindow.show();
+        });
+
+        helpWindow.on('closed', () => {
+          helpWindow = null;
+        });
+
+        helpWindow.on('close', (e) => {
+          if (mainWindow) {
+            e.preventDefault();
+            helpWindow.hide();
+          }
+        })
+      } else if (!helpWindow.isVisible()) {
+        helpWindow.show();
+      } else {
+        helpWindow.focus();
+      }
+    });
 
     http.createServer().listen(8080, 'localhost').on('request', (req, res) => {
       req.pause();

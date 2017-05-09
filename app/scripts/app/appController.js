@@ -43,7 +43,8 @@
     };
 
     $scope.openHelpUrl = () => {
-      shell.openExternal('http://rutracker.wiki/Rutracker_Proxy');
+      // shell.openExternal('http://rutracker.wiki/Rutracker_Proxy');
+      ipcRenderer.send('open-help', true);
     };
 
     ipcRenderer.on('proxy-updated', (event, proxyIp) => {

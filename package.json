@@ -1,6 +1,10 @@
 {
   "name": "rto-proxy",
   "description": "RuTracker Proxy App",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RutrackerOrg/rutracker-proxy"
+  },
   "scripts": {
     "postinstall": "install-app-deps",
     "start": "electron ./app --enable-logging --remote-debugging-port=9222",
