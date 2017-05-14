@@ -11,7 +11,7 @@ module.exports = {
 
     try {
       let data = await request({
-        host:   '51.15.73.176',
+        host:   'api.rufolder.net',
         port:   80,
         method: 'GET',
         path:   path
@@ -25,7 +25,7 @@ module.exports = {
     }
   },
   checkProxy: async (proxyType, proxyIp, proxyPort) => {
-    console.info('checking proxy');
+    console.info('checking proxy: '+ proxyIp);
 
     let options = {};
     const checkUrl = 'http://bt2.rutracker.org/myip?json';
