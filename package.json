@@ -25,7 +25,7 @@
   "devDependencies": {
     "copyfiles": "~1.0.0",
     "electron-builder": "~17.1.1",
-    "electron-prebuilt": "https://github.com/johannesjo/electron-prebuilt.git",
+    "electron": "~1.7.0",
     "live-reload": "~1.1.0",
     "mkdirp": "~0.5.1",
     "npm-run-all": "~2.3.0",
