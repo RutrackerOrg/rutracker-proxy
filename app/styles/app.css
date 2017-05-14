@@ -36,6 +36,7 @@ body {
 
 .local-proxy h1 .fa-question-circle {
     cursor: pointer;
+    color: #b02b2c;
 }
 
 .local-proxy h1 .fa-question-circle:hover {

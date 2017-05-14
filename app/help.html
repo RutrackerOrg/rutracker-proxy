@@ -21,7 +21,7 @@
 <body>
 
 <md-content ng-controller="HelpController" class="content-container">
-    <p ng-show="client" ng-click="showHelp(null)" class="return-main">Не тот клиент?</p>
+    <p ng-show="client" ng-click="showHelp(null)" class="return-main">В начало</p>
     <div ng-show="!client" layout="column" class="panel-main" layout-align="center center">
         <h1>Нужна помощь?</h1>
         <h3>Выберите ваш торрент клиент</h3>
@@ -47,28 +47,28 @@
     </div>
     <div ng-show="client === 'deluge'" class="panel-help" layout="column" layout-align="top left">
         <h2>Настройка Deluge</h2>
-        <p>1. Запустите Deluge и перейдите в пункт: Правка -> Параметры</p>
+        <p>1. Откройте Deluge и перейдите в пункт: Правка -> Параметры</p>
         <img src="images/deluge/step1.png" alt="Шаг 1" width="681" height="517">
         <p>2. Откройте вкладку «Proxy», установите значения как на скриншоте и нажмите «ОК»</p>
         <img src="images/deluge/step2.png" alt="Шаг 2" width="516" height="564">
     </div>
     <div ng-show="client === 'qbittorrent'" class="panel-help" layout="column" layout-align="top left">
         <h2>Настройка qBittorrent</h2>
-        <p>1. Запустите qBittorrent и перейдите в пункт: Инструменты -> Настройки…</p>
+        <p>1. Откройте qBittorrent и перейдите в пункт: Инструменты -> Настройки…</p>
         <img src="images/qbittorrent/step1.png" alt="Шаг 1" width="660" height="487">
         <p>2. Откройте вкладку «Соединение», установите значения как на скриншоте и нажмите «ОК»</p>
         <img src="images/qbittorrent/step2.png" alt="Шаг 2" width="611" height="554">
     </div>
     <div ng-show="client === 'utorrent'" class="panel-help" layout="column" layout-align="top left">
         <h2>Настройка µTorrent</h2>
-        <p>1. Запустите uTorrent и перейдите в пункт: Настройки -> Настройки программы</p>
+        <p>1. Откройте uTorrent и перейдите в пункт: Настройки -> Настройки программы</p>
         <img src="images/utorrent/step1.png" alt="Шаг 1" width="770" height="484">
         <p>2. Откройте вкладку «Соединение», установите значения как на скриншоте и нажмите «ОК»</p>
         <img src="images/utorrent/step2.png" alt="Шаг 2" width="669" height="494">
     </div>
     <div ng-show="client === 'vuze'" class="panel-help" layout="column" layout-align="top left">
         <h2>Настройка µTorrent</h2>
-        <p>1. Запустите Vuze и перейдите в пункт: Инструменты -> Настройки...</p>
+        <p>1. Откройте Vuze и перейдите в пункт: Инструменты -> Настройки...</p>
         <img src="images/vuze/step1.png" alt="Шаг 1" width="732" height="554">
         <p>2. Откройте вкладку «Режим» и выберите пункт «Профессионал» как на скриншоте.</p>
         <img src="images/vuze/step2.png" alt="Шаг 2" width="732" height="567">
