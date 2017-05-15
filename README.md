@@ -1,6 +1,8 @@
 # Rutracker proxy
 #### Прокси для обхода блокировок аннонсеров [RuTracker.ORG](https://rutracker.org/)
 
+#### Все вопросы, предложения и обсуждения ведутся тут
+#### https://rutracker.org/forum/viewtopic.php?t=5403116
 
 ![](misc/main-window.png?raw=true)
 
