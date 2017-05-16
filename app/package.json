@@ -22,7 +22,7 @@
     "babel-preset-stage-3": "^6.5.0",
     "electron-squirrel-startup": "^1.0.0",
     "font-awesome": "^4.7.0",
-    "rsocksv5": "0.0.8",
+    "rsocksv5": "0.0.9",
     "winston": "^2.3.1"
   }
 }

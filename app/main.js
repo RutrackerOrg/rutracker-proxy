@@ -1,7 +1,7 @@
 /*jshint esversion: 6 */
 
 const electron = require('electron');
-const {app, ipcMain} = electron;
+const {app, ipcMain, dialog} = electron;
 const {BrowserWindow, Menu, Tray} = electron;
 const os = require('os');
 const path = require('path');
@@ -71,18 +71,27 @@ app.on('ready', function () {
       proxyPort = null,
       proxyType = 'http';
 
+    let change_rate = 0;
+
     const updateProxy = async (event, requiredType) => {
       console.log([
         'update request',
         requiredType,
       ]);
 
-      proxyType = requiredType;
+    if (change_rate >= 10) {
+      dialog.showErrorBox('Ошибка', 'Не получилось получить валидный сервер, лимит попыток исчерпан');
+      app.quit();
+    }
+
+    proxyType = requiredType;
       [proxyIp, proxyPort] = await getNewProxy(proxyType);
 
-      if (!await checkProxy(proxyType, proxyIp, proxyPort)) {
+      if (!false) {
+        change_rate++;
         await updateProxy(event, requiredType);
       } else {
+        change_rate = 0;
         event.sender.send('proxy-updated', proxyIp);
       }
     };
