@@ -39,6 +39,7 @@
       "title": "RTO proxy",
       "background": "build/background.png",
       "icon": "build/icon.icns",
+      "artifactName": "${productName}-${arch}-installer-macOS.${ext}",
       "contents": [
         {
           "x": 355,
@@ -65,7 +66,7 @@
       "language": "1049",
       "multiLanguageInstaller": true,
       "license": "LICENSE",
-      "artifactName": "${productName}-${arch}-installer.${ext}"
+      "artifactName": "${productName}-${arch}-installer-WINDOWS.${ext}"
     }
   },
   "dependencies": {}
