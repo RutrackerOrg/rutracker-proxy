@@ -76,7 +76,7 @@ app.on('ready', function () {
     const updateProxy = async (event, requiredType) => {
       console.log([
         'update request',
-        requiredType,
+        requiredType
       ]);
 
     if (change_rate >= 10) {
@@ -87,7 +87,7 @@ app.on('ready', function () {
     proxyType = requiredType;
       [proxyIp, proxyPort] = await getNewProxy(proxyType);
 
-      if (!false) {
+      if (!await checkProxy(proxyType, proxyIp, proxyPort)) {
         change_rate++;
         await updateProxy(event, requiredType);
       } else {
