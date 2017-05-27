@@ -5,11 +5,22 @@ const {app, ipcMain, dialog} = electron;
 const {BrowserWindow, Menu, Tray} = electron;
 const os = require('os');
 const path = require('path');
-
+const {autoUpdater} = require("electron-updater");
 const logger = require('winston');
+const isDev = require('electron-is-dev');
+
 logger.level = 'debug';
 global.logger = logger;
 
+autoUpdater.logger = logger;
+autoUpdater.on('update-downloaded', (ev, info) => {});
+
+const checkUpdate = () => {
+  try {
+    autoUpdater.checkForUpdates();
+  } catch (e) {
+  }
+};
 
 const {request, makeProxyRequest} = require('./lib/request'),
   {getNewProxy, checkProxy} = require('./lib/proxy'),
@@ -33,14 +44,12 @@ app.on('window-all-closed', function () {
 
 let tray = null;
 
-app.on('ready', function () {
-
+const runApp = () => {
   mainWindow = new BrowserWindow({
     name: "rto-proxy",
     width: 344,
     height: 244,
     toolbar: false,
-    // закоментить для dev
     resizable: false,
     fullscreenable: false,
     center: true,
@@ -63,9 +72,9 @@ app.on('ready', function () {
     mainWindow.show();
   });
 
-  //noinspection JSUnresolvedFunction
+  //noinspection JSUnresolvedFunction,JSUnusedLocalSymbols
   ipcMain.once('app-initialized', async (event) => {
-    console.info('app initialized');
+    logger.info('app initialized');
 
     let proxyIp = null,
       proxyPort = null,
@@ -74,17 +83,17 @@ app.on('ready', function () {
     let change_rate = 0;
 
     const updateProxy = async (event, requiredType) => {
-      console.log([
+      logger.log([
         'update request',
         requiredType
       ]);
 
-    if (change_rate >= 10) {
-      dialog.showErrorBox('Ошибка', 'Не получилось получить валидный сервер, лимит попыток исчерпан');
-      app.quit();
-    }
+      if (change_rate >= 10) {
+        dialog.showErrorBox('Ошибка', 'Не получилось получить валидный сервер, лимит попыток исчерпан');
+        app.quit();
+      }
 
-    proxyType = requiredType;
+      proxyType = requiredType;
       [proxyIp, proxyPort] = await getNewProxy(proxyType);
 
       if (!await checkProxy(proxyType, proxyIp, proxyPort)) {
@@ -146,8 +155,9 @@ app.on('ready', function () {
       req.pause();
 
       const proxyRequest = makeProxyRequest(proxyType, req, res, proxyIp, proxyPort);
+      //noinspection JSUnresolvedFunction
       proxyRequest.on('error', e => {
-        console.error(e);
+        logger.error(e);
         res.writeHead(400, {"Content-Type": "text/plain"});
         res.write(e.toString());
         res.end();
@@ -194,4 +204,18 @@ app.on('ready', function () {
   tray.setToolTip('Rutracker Proxy');
   tray.setContextMenu(contextMenu);
   tray.on('click', toggleWindow);
+};
+
+app.on('ready', function () {
+  if (isDev) {
+    runApp();
+
+    // раз в сутки проверяем на обновление и если есть то обновляем
+    setTimeout(() => {
+      checkUpdate();
+    }, 86400);
+  } else {
+    checkUpdate();
+  }
 });
+

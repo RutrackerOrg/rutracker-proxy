@@ -10,6 +10,7 @@
     "start": "electron ./app --enable-logging --remote-debugging-port=9222",
     "dev": "NODE_ENV='development' npm run start",
     "dist": "build -m --x64",
+    "dist-deploy": "build -w --ia32 --x64 --draft -p always",
     "prerelease:osx": "rimraf release/osx && mkdirp release/osx",
     "release:osx": "copyfiles -f dist/mac/*.{dmg,zip} release/osx && PACKAGE_VERSION=$(cat app/package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]') && echo $PACKAGE_VERSION >> ./release/osx/VERSION",
     "prerelease:win32": "rimraf release/win32 && mkdirp release/win32",
@@ -24,8 +25,8 @@
   "author": "DreamTorrents Corp. <support@rutracker.org>",
   "devDependencies": {
     "copyfiles": "~1.0.0",
-    "electron-builder": "~17.1.1",
     "electron": "~1.7.0",
+    "electron-builder": "^17.1.2",
     "live-reload": "~1.1.0",
     "mkdirp": "~0.5.1",
     "npm-run-all": "~2.3.0",
@@ -35,6 +36,13 @@
     "appId": "hr.creaticon.rto-proxy",
     "compression": "maximum",
     "artifactName": "${productName}-${arch}-installer.${ext}",
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "RutrackerOrg",
+        "repo": "rutracker-proxy"
+      }
+    ],
     "dmg": {
       "title": "RTO proxy",
       "background": "build/background.png",
