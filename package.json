@@ -10,22 +10,15 @@
     "start": "electron ./app --enable-logging --remote-debugging-port=9222",
     "dev": "NODE_ENV='development' npm run start",
     "dist": "build -m --x64",
-    "prerelease:osx": "rimraf release/osx && mkdirp release/osx",
-    "release:osx": "copyfiles -f dist/mac/*.{dmg,zip} release/osx && PACKAGE_VERSION=$(cat app/package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]') && echo $PACKAGE_VERSION >> ./release/osx/VERSION",
-    "prerelease:win32": "rimraf release/win32 && mkdirp release/win32",
-    "release:win32": "copyfiles -f dist/win-ia32/{RELEASES,*.nupkg,*.exe} release/win32",
-    "prerelease:win64": "rimraf release/win64 && mkdirp release/win64",
-    "release:win64": "copyfiles -f dist/win/{RELEASES,*.nupkg,*.exe} release/win64",
-    "release": "run-p release:*",
-    "deploy": "PACKAGE_VERSION=$(cat app/package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]') && aws s3 sync release/ s3://rto-proxy/updates/$PACKAGE_VERSION/ --acl public-read && aws s3 sync s3://rto-proxy/updates/$PACKAGE_VERSION/ s3://rto-proxy/updates/latest/ --delete --acl public-read",
-    "all": "run-s dist release deploy",
+    "dist-deploy": "build -wm --ia32 --x64 --draft -p always",
+    "all": "run-s dist-deploy",
     "reload": "live-reload app --port 35729"
   },
   "author": "DreamTorrents Corp. <support@rutracker.org>",
   "devDependencies": {
     "copyfiles": "~1.0.0",
-    "electron-builder": "~17.1.1",
     "electron": "~1.7.0",
+    "electron-builder": "^17.1.2",
     "live-reload": "~1.1.0",
     "mkdirp": "~0.5.1",
     "npm-run-all": "~2.3.0",
@@ -35,6 +28,13 @@
     "appId": "hr.creaticon.rto-proxy",
     "compression": "maximum",
     "artifactName": "${productName}-${arch}-installer.${ext}",
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "RutrackerOrg",
+        "repo": "rutracker-proxy"
+      }
+    ],
     "dmg": {
       "title": "RTO proxy",
       "background": "build/background.png",
