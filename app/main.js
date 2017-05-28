@@ -6,14 +6,8 @@ const {BrowserWindow, Menu, Tray} = electron;
 const os = require('os');
 const path = require('path');
 const {autoUpdater} = require("electron-updater");
-const logger = require('winston');
+const logger = require('./lib/logger');
 const isDev = require('electron-is-dev');
-
-logger.level = 'debug';
-global.logger = logger;
-
-autoUpdater.logger = logger;
-autoUpdater.on('update-downloaded', (ev, info) => {});
 
 const checkUpdate = () => {
   try {
@@ -207,15 +201,12 @@ const runApp = () => {
 };
 
 app.on('ready', function () {
-  if (isDev) {
-    runApp();
-
-    // раз в сутки проверяем на обновление и если есть то обновляем
+  runApp();
+  if (!isDev) {
+    checkUpdate();
     setTimeout(() => {
       checkUpdate();
-    }, 86400);
-  } else {
-    checkUpdate();
+    }, 10800000);
   }
 });
 
