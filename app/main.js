@@ -16,6 +16,10 @@ const checkUpdate = () => {
   }
 };
 
+autoUpdater.on('update-downloaded', () => {
+  autoUpdater.quitAndInstall();
+});
+
 const {request, makeProxyRequest} = require('./lib/request'),
   {getNewProxy, checkProxy} = require('./lib/proxy'),
   url = require('url'),
@@ -201,12 +205,8 @@ const runApp = () => {
 };
 
 app.on('ready', function () {
+  checkUpdate();
   runApp();
-  if (!isDev) {
-    checkUpdate();
-    setTimeout(() => {
-      checkUpdate();
-    }, 10800000);
-  }
 });
+
 
