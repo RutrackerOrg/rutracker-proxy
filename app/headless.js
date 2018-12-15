@@ -6,9 +6,9 @@ const commandLineArgs = require('command-line-args');
 
 const obtainConfig = () => {
   const optionDefinitions = [
-    {name: 'ip', type: String, defaultOption: '0.0.0.0'},
-    {name: 'port', alias: 't', type: Number, defaultOption: 8080},
-    {name: 'type', type: String, defaultOption: 'socks'}
+    {name: 'ip', type: String, defaultValue: '0.0.0.0'},
+    {name: 'port', alias: 't', type: Number, defaultValue: 8080},
+    {name: 'type', type: String, defaultValue: 'socks'}
   ];
   return commandLineArgs(optionDefinitions)
 };
