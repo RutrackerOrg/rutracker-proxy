@@ -12,7 +12,8 @@
     "dist": "build -m --x64",
     "dist-deploy": "build -wm --ia32 --x64 --draft -p always",
     "all": "run-s dist-deploy",
-    "reload": "live-reload app --port 35729"
+    "reload": "live-reload app --port 35729",
+    "headless": "node ./app/headless.js"
   },
   "author": "DreamTorrents Corp. <support@rutracker.org>",
   "devDependencies": {
