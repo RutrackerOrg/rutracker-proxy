@@ -54,6 +54,7 @@ module.exports = {
         method: 'GET',
         path: checkUrl,
         headers: {
+          'Host': ph.host,
           'User-Agent': 'rto/proxy-app'
         }
       };
