@@ -17,7 +17,7 @@ module.exports = {
         path:   path
       });
 
-      return data.split(':');
+      return data.split(':').map(row => row.trim());
     } catch (e) {
       console.log(e);
 
