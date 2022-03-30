@@ -17,7 +17,7 @@ module.exports = {
         path:   path
       });
 
-      return data.split(':');
+      return data.split(':').map(row => row.trim());
     } catch (e) {
       console.log(e);
 
@@ -54,6 +54,7 @@ module.exports = {
         method: 'GET',
         path: checkUrl,
         headers: {
+          'Host': ph.host,
           'User-Agent': 'rto/proxy-app'
         }
       };
