@@ -9,8 +9,8 @@
     "postinstall": "install-app-deps",
     "start": "electron ./app --enable-logging --remote-debugging-port=9222",
     "dev": "NODE_ENV='development' npm run start",
-    "dist": "build -m --x64",
-    "dist-deploy": "build -wm --ia32 --x64 --draft -p always",
+    "dist": "build --x64",
+    "dist-deploy": "build -lwm --ia32 --x64 --draft -p always",
     "all": "run-s dist-deploy",
     "reload": "live-reload app --port 35729"
   },
@@ -53,6 +53,16 @@
           "type": "file"
         }
       ]
+    },
+    "linux": {
+      "category": "Network",
+      "packageCategory": "Network",
+      "description": "Proxy for rutracker.org",
+      "target": "deb",
+      "artifactName": "${productName}-${arch}-installer-linux.${ext}"
+    },
+    "deb": {
+      "synopsis": "RTO proxy"
     },
     "win": {
       "target": "nsis",
